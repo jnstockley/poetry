@@ -1,4 +1,5 @@
 ARG PYTHON_VERSION=3.13
+
 FROM python:${PYTHON_VERSION}-alpine
 
 RUN apk update
@@ -16,6 +17,8 @@ ENV PATH="/home/python3/.local/bin:$PATH"
 RUN python3 -m pip install --upgrade pip
 
 COPY requirements.txt .
+
+RUN pip3 install --upgrade pip
 
 RUN pip3 install --user -r requirements.txt
 
