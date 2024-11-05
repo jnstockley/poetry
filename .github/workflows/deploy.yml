@@ -41,7 +41,7 @@ jobs:
       - name: Get Poetry version
         id: get-poetry-version
         run: |
-          pip install -r docker/images/poetry/requirements.txt
+          pip install -r requirements.txt
           POETRY_VERSION=$(poetry --version | awk '{print $3}' | sed 's/)$//')
           echo "POETRY_VERSION=$POETRY_VERSION" >> $GITHUB_ENV
 
