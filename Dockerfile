@@ -14,8 +14,6 @@ USER python3
 
 ENV PATH="/home/python3/.local/bin:$PATH"
 
-RUN python3 -m pip install --upgrade pip
-
 COPY requirements.txt .
 
 RUN pip3 install --upgrade pip
@@ -24,6 +22,6 @@ RUN pip3 install --user -r requirements.txt
 
 USER root
 
-RUN apk del alpine-sdk python3-dev libressl-dev musl-dev libffi-dev gcc libressl-dev curl
+RUN apk del alpine-sdk python3-dev libressl-dev musl-dev libffi-dev gcc libressl-dev
 
 USER python3
