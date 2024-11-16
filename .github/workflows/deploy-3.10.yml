@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - ../../Dockerfile310
+      - Dockerfile310
       - requirements.txt
       - .github/workflows/deploy-3.10.yml
 jobs:

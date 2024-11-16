@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - ../../Dockerfile38
+      - Dockerfile38
       - requirements.txt
       - .github/workflows/deploy-3.8.yml
 jobs:

@@ -1,11 +1,11 @@
-name: Publish Poetry Docker image (Python 3.12)
+name: Publish Poetry Docker image (Python 3.13)
 
 on:
   push:
     branches:
       - main
     paths:
-      - ../../Dockerfile313
+      - Dockerfile313
       - requirements.txt
       - .github/workflows/deploy-3.13.yml
 jobs:

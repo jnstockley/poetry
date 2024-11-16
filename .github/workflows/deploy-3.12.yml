@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - ../../Dockerfile312
+      - Dockerfile312
       - requirements.txt
       - .github/workflows/deploy-3.12.yml
 jobs:
