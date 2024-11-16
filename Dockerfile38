@@ -14,7 +14,7 @@ ENV PATH="/home/python3/.local/bin:$PATH"
 
 COPY requirements.txt .
 
-RUN pip3 install --upgrade pip
+RUN pip install --upgrade pip
 
 RUN pip3 install --user -r requirements.txt
 
