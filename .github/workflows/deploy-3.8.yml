@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - Dockerfile3.8
+      - ../../Dockerfile38
       - requirements.txt
       - .github/workflows/deploy-3.8.yml
 jobs:
@@ -68,7 +68,7 @@ jobs:
         id: build
         uses: docker/build-push-action@v6
         with:
-          context: .Dockerfile3.8
+          context: .Dockerfile38
           platforms: linux/amd64,linux/arm64
           push: true
           tags: jnstockley/poetry:latest-python${{ env.PYTHON_VERSION }},jnstockley/poetry:${{ env.POETRY_VERSION }}-python${{ env.PYTHON_VERSION }}
