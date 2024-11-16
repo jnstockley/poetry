@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - ../../Dockerfile311
+      - Dockerfile311
       - requirements.txt
       - .github/workflows/deploy-3.11.yml
 jobs:
