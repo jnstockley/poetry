@@ -1,4 +1,4 @@
-FROM python:3.10.15-alpine
+FROM python:3.10.16-alpine
 
 RUN apk update
 
