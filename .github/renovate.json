@@ -1,5 +1,38 @@
 {
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "baseBranches": ["beta"],
-  "bumpVersion": "patch"
+  "extends": [
+    "config:base"
+  ],
+  "packageRules": [
+    {
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["python"],
+      "matchPaths": ["Dockerfile39"],
+      "versioning": "regex:^3\\.9\\.[0-9]+$"
+    },
+    {
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["python"],
+      "matchPaths": ["Dockerfile310"],
+      "versioning": "regex:^3\\.10\\.[0-9]+$"
+    },
+    {
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["python"],
+      "matchPaths": ["Dockerfile311"],
+      "versioning": "regex:^3\\.11\\.[0-9]+$"
+    },
+    {
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["python"],
+      "matchPaths": ["Dockerfile312"],
+      "versioning": "regex:^3\\.12\\.[0-9]+$"
+    },
+    {
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["python"],
+      "matchPaths": ["Dockerfile313"],
+      "versioning": "regex:^3\\.13\\.[0-9]+$"
+    }
+  ]
 }
