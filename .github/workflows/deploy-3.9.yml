@@ -72,5 +72,9 @@ jobs:
           file: Dockerfile39
           platforms: linux/386,linux/amd64,linux/arm64
           push: true
-          tags: jnstockley/poetry:latest-python${{ env.PYTHON_VERSION }},jnstockley/poetry:${{ env.POETRY_VERSION }}-python${{ env.PYTHON_VERSION }}
+          tags: |
+            jnstockley/poetry:latest-python${{ env.PYTHON_VERSION }}
+            jnstockley/poetry:${{ env.POETRY_VERSION }}-python${{ env.PYTHON_VERSION }}
+            ghcr.io/jnstockley/poetry:latest-python${{ env.PYTHON_VERSION }}
+            ghcr.io/jnstockley/poetry:${{ env.POETRY_VERSION }}-python${{ env.PYTHON_VERSION }}
           labels: ${{ steps.meta.outputs.labels }}
