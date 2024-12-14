@@ -2,7 +2,7 @@ FROM python:3.10.16-alpine
 
 RUN apk update && \
     apk upgrade && \
-    apk add alpine-sdk python3-dev musl-dev libffi-dev gcc libressl-dev curl openssl-dev cargo pkgconfig && \
+    apk add alpine-sdk python3-dev musl-dev libffi-dev gcc curl openssl-dev cargo pkgconfig && \
     addgroup -S python3 && adduser -S python3 -G python3
 
 COPY requirements.txt .
