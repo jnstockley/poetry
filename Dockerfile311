@@ -12,4 +12,12 @@ RUN pip install --upgrade pip && \
 
 FROM python:3.11.11-alpine
 
+LABEL org.opencontainers.image.authors="Jack Stockley <jack@jstockley.com>"
+LABEL org.opencontainers.image.url="https://github.com/jnstockley/poetry"
+LABEL org.opencontainers.image.documentation="https://github.com/jnstockley/poetry"
+LABEL org.opencontainers.image.source="https://github.com/jnstockley/poetry"
+LABEL org.opencontainers.image.vendor="Jack Stockley"
+LABEL org.opencontainers.image.licenses="MIT"
+LABEL org.opencontainers.image.title="Python Poetry"
+
 COPY --from=build /root/.local/ /usr/local/

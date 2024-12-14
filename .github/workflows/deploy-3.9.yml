@@ -56,13 +56,11 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.ACTIONS_GITHUB_TOKEN }}
 
-      - name: Extract metadata (tags, labels) for Docker
-        id: meta
-        uses: docker/metadata-action@v5
-        with:
-          images: |
-            jnstockley/poetry
-            ghcr.io/jnstockley/poetry
+      - name: Generate RFC 3339 datetime
+        id: generate-datetime
+        run: |
+          RFC3339_DATETIME=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+          echo "RFC3339_DATETIME=$RFC3339_DATETIME" >> $GITHUB_ENV
 
       - name: Build Docker image
         id: build
@@ -72,9 +70,14 @@ jobs:
           file: Dockerfile39
           platforms: linux/386,linux/amd64,linux/arm64
           push: true
+          labels: |
+            org.opencontainers.image.created=${{ env.RFC3339_DATETIME }}
+            org.opencontainers.image.version=${{ env.POETRY_VERSION }}
+            org.opencontainers.image.revision=${{ env.POETRY_VERSION }}-python${{ env.PYTHON_VERSION }}
+            org.opencontainers.image.ref.name=${{ env.POETRY_VERSION }}
+            org.opencontainers.image.description=Poetry ${{ env.POETRY_VERSION }} using Python ${{ env.PYTHON_VERSION }}
           tags: |
             jnstockley/poetry:latest-python${{ env.PYTHON_VERSION }}
             jnstockley/poetry:${{ env.POETRY_VERSION }}-python${{ env.PYTHON_VERSION }}
             ghcr.io/jnstockley/poetry:latest-python${{ env.PYTHON_VERSION }}
             ghcr.io/jnstockley/poetry:${{ env.POETRY_VERSION }}-python${{ env.PYTHON_VERSION }}
-          labels: ${{ steps.meta.outputs.labels }}
