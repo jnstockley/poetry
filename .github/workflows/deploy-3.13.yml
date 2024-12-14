@@ -71,6 +71,8 @@ jobs:
           context: .
           file: Dockerfile313
           platforms: linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64/v8,linux/ppc64le,linux/s390x
+          build-args: |
+            POETRY_VERSION=${{ env.POETRY_VERSION }}
           push: true
           tags: jnstockley/poetry:latest,jnstockley/poetry:latest-python${{ env.PYTHON_VERSION }},jnstockley/poetry:${{ env.POETRY_VERSION }},jnstockley/poetry:${{ env.POETRY_VERSION }}-python${{ env.PYTHON_VERSION }}
           labels: ${{ steps.meta.outputs.labels }}
