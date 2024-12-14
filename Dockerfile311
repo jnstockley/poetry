@@ -1,6 +1,5 @@
 FROM python:3.11.11-alpine AS build
 
-
 RUN apk update && \
     apk upgrade && \
     apk add alpine-sdk python3-dev musl-dev libffi-dev gcc curl openssl-dev cargo pkgconfig && \
