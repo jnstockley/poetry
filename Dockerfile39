@@ -2,7 +2,7 @@ FROM python:3.9.21-alpine
 
 RUN apk update && \
     apk upgrade && \
-    apk add alpine-sdk python3-dev libressl-dev musl-dev libffi-dev gcc libressl-dev curl && \
+    apk add alpine-sdk python3-dev libressl-dev musl-dev libffi-dev gcc libressl-dev curl rust && \
     addgroup -S python3 && adduser -S python3 -G python3
 
 COPY requirements.txt .
