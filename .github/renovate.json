@@ -7,7 +7,7 @@
       "matchDatasources": ["docker"],
       "matchPackageNames": ["python"],
       "matchPaths": ["Dockerfile39"],
-      "versioning": "regex:^(?<major>3)\\.(?<minor>9)\\.(?<patch>\\d+)$"
+      "versioning": "regex:^(?<major>\\3)\\.(?<minor>\\9)\\.(?<patch>\\d+)(-(?<compatibility>.*))?$"
     },
     {
       "matchDatasources": ["docker"],
