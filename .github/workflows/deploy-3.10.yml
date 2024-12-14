@@ -1,4 +1,4 @@
-name: Publish Poetry Docker image (Python 3.10)
+name: Python 3.10
 
 on:
   push:
@@ -70,7 +70,7 @@ jobs:
         with:
           context: .
           file: Dockerfile310
-          platforms: linux/amd64,linux/arm64
+          platforms: linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64/v8,linux/ppc64le,linux/s390x
           push: true
           tags: jnstockley/poetry:latest-python${{ env.PYTHON_VERSION }},jnstockley/poetry:${{ env.POETRY_VERSION }}-python${{ env.PYTHON_VERSION }}
           labels: ${{ steps.meta.outputs.labels }}
