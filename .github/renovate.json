@@ -7,35 +7,30 @@
       "matchDatasources": ["docker"],
       "matchPackageNames": ["python"],
       "matchPaths": ["Dockerfile39"],
-      "matchUpdateTypes": ["major", "minor", "patch"],
       "versioning": "regex:^(?<major>3)\\.(?<minor>9)\\.(?<patch>\\d+)$"
     },
     {
       "matchDatasources": ["docker"],
       "matchPackageNames": ["python"],
       "matchPaths": ["Dockerfile310"],
-      "matchUpdateTypes": ["major", "minor", "patch"],
       "versioning": "regex:^(?<major>3)\\.(?<minor>10)\\.(?<patch>\\d+)$"
     },
     {
       "matchDatasources": ["docker"],
       "matchPackageNames": ["python"],
       "matchPaths": ["Dockerfile311"],
-      "matchUpdateTypes": ["major", "minor", "patch"],
       "versioning": "regex:^(?<major>3)\\.(?<minor>11)\\.(?<patch>\\d+)$"
     },
     {
       "matchDatasources": ["docker"],
       "matchPackageNames": ["python"],
       "matchPaths": ["Dockerfile312"],
-      "matchUpdateTypes": ["major", "minor", "patch"],
       "versioning": "regex:^(?<major>3)\\.(?<minor>12)\\.(?<patch>\\d+)$"
     },
     {
       "matchDatasources": ["docker"],
       "matchPackageNames": ["python"],
       "matchPaths": ["Dockerfile313"],
-      "matchUpdateTypes": ["major", "minor", "patch"],
       "versioning": "regex:^(?<major>3)\\.(?<minor>13)\\.(?<patch>\\d+)$"
     }
   ]
