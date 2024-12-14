@@ -1,37 +1,69 @@
 {
   "extends": [
-    "config:base"
+    "config:recommended"
   ],
-  "baseBranches": ["beta"],
+  "baseBranches": [
+    "beta"
+  ],
   "packageRules": [
     {
-      "matchDatasources": ["docker"],
-      "matchPackageNames": ["python"],
-      "matchPaths": ["Dockerfile39"],
+      "matchDatasources": [
+        "docker"
+      ],
+      "matchPackageNames": [
+        "python"
+      ],
+      "matchFileNames": [
+        "Dockerfile39"
+      ],
       "versioning": "regex:^(?<major>3)\\.(?<minor>9)\\.(?<patch>\\d+)(-(?<compatibility>.*))?$"
     },
     {
-      "matchDatasources": ["docker"],
-      "matchPackageNames": ["python"],
-      "matchPaths": ["Dockerfile310"],
+      "matchDatasources": [
+        "docker"
+      ],
+      "matchPackageNames": [
+        "python"
+      ],
+      "matchFileNames": [
+        "Dockerfile310"
+      ],
       "versioning": "regex:^(?<major>3)\\.(?<minor>10)\\.(?<patch>\\d+)(-(?<compatibility>.*))?$"
     },
     {
-      "matchDatasources": ["docker"],
-      "matchPackageNames": ["python"],
-      "matchPaths": ["Dockerfile311"],
+      "matchDatasources": [
+        "docker"
+      ],
+      "matchPackageNames": [
+        "python"
+      ],
+      "matchFileNames": [
+        "Dockerfile311"
+      ],
       "versioning": "regex:^(?<major>3)\\.(?<minor>11)\\.(?<patch>\\d+)(-(?<compatibility>.*))?$"
     },
     {
-      "matchDatasources": ["docker"],
-      "matchPackageNames": ["python"],
-      "matchPaths": ["Dockerfile312"],
+      "matchDatasources": [
+        "docker"
+      ],
+      "matchPackageNames": [
+        "python"
+      ],
+      "matchFileNames": [
+        "Dockerfile312"
+      ],
       "versioning": "regex:^(?<major>3)\\.(?<minor>12)\\.(?<patch>\\d+)(-(?<compatibility>.*))?$"
     },
     {
-      "matchDatasources": ["docker"],
-      "matchPackageNames": ["python"],
-      "matchPaths": ["Dockerfile313"],
+      "matchDatasources": [
+        "docker"
+      ],
+      "matchPackageNames": [
+        "python"
+      ],
+      "matchFileNames": [
+        "Dockerfile313"
+      ],
       "versioning": "regex:^(?<major>3)\\.(?<minor>13)\\.(?<patch>\\d+)(-(?<compatibility>.*))?$"
     }
   ]
