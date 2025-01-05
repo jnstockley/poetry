@@ -75,7 +75,7 @@ jobs:
           result-encoding: string
 
       - name: Output repository description
-        run:
+        run: |
           echo "Repository description: ${{ steps.get-repo-description.outputs.result }}"
 
       - name: Update Docker Description and README
