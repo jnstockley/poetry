@@ -62,6 +62,26 @@ jobs:
           RFC3339_DATETIME=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
           echo "RFC3339_DATETIME=$RFC3339_DATETIME" >> $GITHUB_ENV
 
+      - name: Get repository description
+        id: get-repo-description
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const repo = await github.repos.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo
+            });
+            return repo.data.description;
+        result-encoding: string
+
+      - name: Update Docker Description and README
+        uses: peter-evans/dockerhub-description@v4.0.0
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          repository: jnstockley/poetry
+          short-description: ${{ steps.get-repo-description.outputs.result }}
+
       - name: Build Docker image
         id: build
         uses: docker/build-push-action@v6
