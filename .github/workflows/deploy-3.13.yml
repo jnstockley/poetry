@@ -72,7 +72,7 @@ jobs:
               repo: context.repo.repo
             });
             return repo.data.description;
-        result-encoding: string
+          result-encoding: string
 
       - name: Update Docker Description and README
         uses: peter-evans/dockerhub-description@v4.0.0
