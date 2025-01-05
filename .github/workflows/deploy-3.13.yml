@@ -71,8 +71,12 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo
             });
-            return repo.data.description;
+            return repo.description;
           result-encoding: string
+
+      - name: Output repository description
+        run:
+          echo "Repository description: ${{ steps.get-repo-description.outputs.result }}"
 
       - name: Update Docker Description and README
         uses: peter-evans/dockerhub-description@v4.0.0
