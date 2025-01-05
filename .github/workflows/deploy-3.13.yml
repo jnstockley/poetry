@@ -64,7 +64,7 @@ jobs:
 
       - name: Get repository description
         id: get-repo-description
-        uses: actions/github-script@v6
+        uses: actions/github-script@v7.0.1
         with:
           script: |
             const repo = await github.repos.get({
@@ -72,7 +72,7 @@ jobs:
               repo: context.repo.repo
             });
             return repo.data.description;
-        result-encoding: string
+          result-encoding: string
 
       - name: Update Docker Description and README
         uses: peter-evans/dockerhub-description@v4.0.0
