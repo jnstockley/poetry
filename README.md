@@ -14,7 +14,8 @@ i.e. if Python supports 3.9+ and Poetry supports 3.8+, we will support 3.9+.
 ### Dockerfile
 ```Dockerfile
 FROM jnstockley/python-poetry:<poetry-version>-python-<python-version>
-....
+
+...
 
 RUN poetry check # Ensure poetry project follows poetry spec
 ```
