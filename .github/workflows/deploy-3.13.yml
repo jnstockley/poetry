@@ -68,7 +68,7 @@ jobs:
       - name: Extract metadata for pull request (testing)
         if: github.event_name == 'pull_request'
         run: |
-          echo "tags=echo "tags=jnstockley/poetry:testing,jnstockley/poetry:testing-python${{ env.PYTHON_VERSION }},jnstockley/poetry:testing-${{ env.POETRY_VERSION }}-python${{ env.PYTHON_VERSION }},ghcr.io/jnstockley/poetry:testing,ghcr.io/jnstockley/poetry:testing-python${{ env.PYTHON_VERSION }},ghcr.io/jnstockley/poetry:testing-${{ env.POETRY_VERSION }}-python${{ env.PYTHON_VERSION }}" >> $GITHUB_ENV" >> $GITHUB_ENV
+          echo "tags=jnstockley/poetry:testing,jnstockley/poetry:testing-python${{ env.PYTHON_VERSION }},jnstockley/poetry:testing-${{ env.POETRY_VERSION }}-python${{ env.PYTHON_VERSION }},ghcr.io/jnstockley/poetry:testing,ghcr.io/jnstockley/poetry:testing-python${{ env.PYTHON_VERSION }},ghcr.io/jnstockley/poetry:testing-${{ env.POETRY_VERSION }}-python${{ env.PYTHON_VERSION }}" >> $GITHUB_ENV" >> $GITHUB_ENV
 
       - name: Extract metadata for push (prod)
         if: github.event_name == 'push'
