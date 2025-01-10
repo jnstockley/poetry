@@ -1,6 +1,9 @@
 name: Python 3.12
 
 on:
+  pull_request:
+    branches:
+      - main
   push:
     branches:
       - main
