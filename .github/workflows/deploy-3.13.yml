@@ -1,6 +1,9 @@
 name: Python 3.13
 
 on:
+  pull_request:
+    branches:
+      - main
   push:
     branches:
       - main
@@ -62,6 +65,16 @@ jobs:
           RFC3339_DATETIME=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
           echo "RFC3339_DATETIME=$RFC3339_DATETIME" >> $GITHUB_ENV
 
+      - name: Extract metadata for pull request (testing)
+        if: github.event_name == 'pull_request'
+        run: |
+          echo "tags=jnstockley/poetry:testing,jnstockley/poetry:testing-python${{ env.PYTHON_VERSION }},jnstockley/poetry:testing-${{ env.POETRY_VERSION }}-python${{ env.PYTHON_VERSION }},ghcr.io/jnstockley/poetry:testing,ghcr.io/jnstockley/poetry:testing-python${{ env.PYTHON_VERSION }},ghcr.io/jnstockley/poetry:testing-${{ env.POETRY_VERSION }}-python${{ env.PYTHON_VERSION }}" >> $GITHUB_ENV
+
+      - name: Extract metadata for push (prod)
+        if: github.event_name == 'push'
+        run: |
+          echo "tags=jnstockley/poetry:latest,jnstockley/poetry:latest-python${{ env.PYTHON_VERSION }},jnstockley/poetry:${{ env.POETRY_VERSION }}-python${{ env.PYTHON_VERSION }},ghcr.io/jnstockley/poetry:latest,ghcr.io/jnstockley/poetry:latest-python${{ env.PYTHON_VERSION }},ghcr.io/jnstockley/poetry:${{ env.POETRY_VERSION }}-python${{ env.PYTHON_VERSION }}" >> $GITHUB_ENV
+
       - name: Get repository description
         id: get-repo-description
         uses: actions/github-script@v7.0.1
@@ -96,11 +109,4 @@ jobs:
             org.opencontainers.image.revision=${{ env.POETRY_VERSION }}-python${{ env.PYTHON_VERSION }}
             org.opencontainers.image.ref.name=${{ env.POETRY_VERSION }}
             org.opencontainers.image.description=Poetry ${{ env.POETRY_VERSION }} using Python ${{ env.PYTHON_VERSION }}
-
-          tags: | 
-            jnstockley/poetry:latest
-            jnstockley/poetry:latest-python${{ env.PYTHON_VERSION }}
-            jnstockley/poetry:${{ env.POETRY_VERSION }}-python${{ env.PYTHON_VERSION }}
-            ghcr.io/jnstockley/poetry:latest
-            ghcr.io/jnstockley/poetry:latest-python${{ env.PYTHON_VERSION }}
-            ghcr.io/jnstockley/poetry:${{ env.POETRY_VERSION }}-python${{ env.PYTHON_VERSION }}
+          tags: ${{ env.tags }}

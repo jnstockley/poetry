@@ -7,7 +7,7 @@ RUN apk update && \
 
 COPY requirements.txt .
 
-RUN pip install --upgrade pip && \
+RUN pip install --user --upgrade pip && \
     pip install --user -r requirements.txt
 
 FROM python:3.11.11-alpine
