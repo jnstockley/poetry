@@ -5,6 +5,9 @@
   "baseBranches": [
     "beta"
   ],
+  "assignees": [
+    "jnstockley"
+  ],
   "packageRules": [
     {
       "matchDatasources": [
