@@ -2,6 +2,9 @@
   "extends": [
     "config:recommended"
   ],
+  "ignorePaths": [
+    ".github/workflows/**"
+  ],
   "baseBranches": [
     "beta"
   ],
