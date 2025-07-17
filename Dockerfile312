@@ -1,4 +1,4 @@
-FROM python:3.12.11-alpine@sha256:707c5b1821e633f327c52a77df29c621e9f90c8c43498e477f63239be1a1cac9 AS build
+FROM python:3.12.11-alpine@sha256:9d28d9359a43bdfeb0ca4deb4722b5f88514a4646000b7357f43ee0316e425fa AS build
 
 RUN apk update && \
     apk upgrade && \
@@ -10,7 +10,7 @@ COPY requirements.txt .
 RUN pip install --user --upgrade pip && \
     pip install --user -r requirements.txt
 
-FROM python:3.12.11-alpine@sha256:707c5b1821e633f327c52a77df29c621e9f90c8c43498e477f63239be1a1cac9
+FROM python:3.12.11-alpine@sha256:9d28d9359a43bdfeb0ca4deb4722b5f88514a4646000b7357f43ee0316e425fa
 
 LABEL org.opencontainers.image.authors="Jack Stockley <jack@jstockley.com>"
 LABEL org.opencontainers.image.url="https://github.com/jnstockley/poetry"
