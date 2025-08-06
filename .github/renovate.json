@@ -5,7 +5,7 @@
   "ignorePaths": [
     ".github/workflows/**"
   ],
-  "baseBranches": [
+  "baseBranchPatterns": [
     "beta"
   ],
   "assignees": [
