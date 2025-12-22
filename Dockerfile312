@@ -1,16 +1,11 @@
-FROM python:3.12.12-alpine@sha256:68d81cd281ee785f48cdadecb6130d05ec6957f1249814570dc90e5100d3b146 AS build
-
-RUN apk update && \
-    apk upgrade && \
-    apk add alpine-sdk python3-dev musl-dev libffi-dev gcc curl openssl-dev cargo pkgconfig && \
-    addgroup -S python3 && adduser -S python3 -G python3
+FROM dhi.io/python:3.12.12-dev@sha256:3182f9f0ec2bea938af32387c1e7a367f57c7c1a09fa4df86ef880f99aae0eb8 AS build
 
 COPY requirements.txt .
 
 RUN pip install --user --upgrade pip && \
     pip install --user -r requirements.txt
 
-FROM python:3.12.12-alpine@sha256:68d81cd281ee785f48cdadecb6130d05ec6957f1249814570dc90e5100d3b146
+FROM dhi.io/python:3.12.12@sha256:1269127ef2c19f4ebd94e95996ba085f5e8f36cf955163261ab735ff3ab779c2
 
 LABEL org.opencontainers.image.authors="Jack Stockley <jack@jstockley.com>"
 LABEL org.opencontainers.image.url="https://github.com/jnstockley/poetry"
