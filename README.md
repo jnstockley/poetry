@@ -6,7 +6,6 @@ We follow the same supported versions as Python supports or Poetry whichever is 
 i.e. if Python supports 3.9+ and Poetry supports 3.8+, we will support 3.9+.
 
 ## Supported Architectures
-- linux/386
 - linux/amd64
 - linux/arm64
 
