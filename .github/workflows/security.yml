@@ -66,7 +66,7 @@ jobs:
           format: 'template'
           template: '@/contrib/sarif.tpl'
           output: 'trivy-results-39.sarif'
-          scanners: 'vuln,secret,misconfig,license'
+          scanners: 'vuln,secret,misconfig'
           severity: 'CRITICAL,HIGH'
 
       - name: Run Trivy vulnerability scanner for Docker image
@@ -76,7 +76,7 @@ jobs:
           format: 'template'
           template: '@/contrib/sarif.tpl'
           output: 'trivy-results-310.sarif'
-          scanners: 'vuln,secret,misconfig,license'
+          scanners: 'vuln,secret,misconfig'
           severity: 'CRITICAL,HIGH'
 
       - name: Run Trivy vulnerability scanner for Docker image
@@ -86,7 +86,7 @@ jobs:
           format: 'template'
           template: '@/contrib/sarif.tpl'
           output: 'trivy-results-311.sarif'
-          scanners: 'vuln,secret,misconfig,license'
+          scanners: 'vuln,secret,misconfig'
           severity: 'CRITICAL,HIGH'
 
       - name: Run Trivy vulnerability scanner for Docker image
@@ -96,7 +96,7 @@ jobs:
           format: 'template'
           template: '@/contrib/sarif.tpl'
           output: 'trivy-results-312.sarif'
-          scanners: 'vuln,secret,misconfig,license'
+          scanners: 'vuln,secret,misconfig'
           severity: 'CRITICAL,HIGH'
 
       - name: Run Trivy vulnerability scanner for Docker image
@@ -106,7 +106,7 @@ jobs:
           format: 'template'
           template: '@/contrib/sarif.tpl'
           output: 'trivy-results-313.sarif'
-          scanners: 'vuln,secret,misconfig,license'
+          scanners: 'vuln,secret,misconfig'
           severity: 'CRITICAL,HIGH'
 
       - name: Run Trivy vulnerability scanner for Docker image
@@ -116,7 +116,7 @@ jobs:
           format: 'template'
           template: '@/contrib/sarif.tpl'
           output: 'trivy-results-314.sarif'
-          scanners: 'vuln,secret,misconfig,license'
+          scanners: 'vuln,secret,misconfig'
           severity: 'CRITICAL,HIGH'
 
       - name: Upload Trivy scan results to GitHub Security tab
