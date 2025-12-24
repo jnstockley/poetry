@@ -29,7 +29,7 @@
         "docker"
       ],
       "matchPackageNames": [
-        "python"
+        "dhi.io/python"
       ],
       "matchFileNames": [
         "Dockerfile310"
@@ -41,7 +41,7 @@
         "docker"
       ],
       "matchPackageNames": [
-        "python"
+        "dhi.io/python"
       ],
       "matchFileNames": [
         "Dockerfile311"
@@ -53,7 +53,7 @@
         "docker"
       ],
       "matchPackageNames": [
-        "python"
+        "dhi.io/python"
       ],
       "matchFileNames": [
         "Dockerfile312"
@@ -65,12 +65,24 @@
         "docker"
       ],
       "matchPackageNames": [
-        "python"
+        "dhi.io/python"
       ],
       "matchFileNames": [
         "Dockerfile313"
       ],
       "versioning": "regex:^(?<major>3)\\.(?<minor>13)\\.(?<patch>\\d+)(-(?<compatibility>.*))?$"
+    },
+    {
+      "matchDatasources": [
+        "docker"
+      ],
+      "matchPackageNames": [
+        "dhi.io/python"
+      ],
+      "matchFileNames": [
+        "Dockerfile314"
+      ],
+      "versioning": "regex:^(?<major>3)\\.(?<minor>14)\\.(?<patch>\\d+)(-(?<compatibility>.*))?$"
     }
   ]
 }
