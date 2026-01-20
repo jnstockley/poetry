@@ -17,18 +17,6 @@
         "docker"
       ],
       "matchPackageNames": [
-        "python"
-      ],
-      "matchFileNames": [
-        "Dockerfile39"
-      ],
-      "versioning": "regex:^(?<major>3)\\.(?<minor>9)\\.(?<patch>\\d+)(-(?<compatibility>.*))?$"
-    },
-    {
-      "matchDatasources": [
-        "docker"
-      ],
-      "matchPackageNames": [
         "dhi.io/python"
       ],
       "matchFileNames": [
