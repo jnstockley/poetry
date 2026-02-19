@@ -39,28 +39,19 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Check if Dockerfile exists
-        id: dockerfile_check
-        run: |
-          if [ -f "Dockerfile" ]; then
-            echo "exists=true" >> $GITHUB_OUTPUT
-          else
-            echo "exists=false" >> $GITHUB_OUTPUT
-          fi
-
       - name: Build Docker image
-        if: github.event_name != 'schedule'
+        if: github.event_name == 'schedule' # TODO Change this, this is for testing
         run: |
-          docker build -f Dockerfile310 -t ${{ github.actor }}/${{ github.event.repository.name }}:310 .
-          docker build -f Dockerfile311 -t ${{ github.actor }}/${{ github.event.repository.name }}:311 .
-          docker build -f Dockerfile312 -t ${{ github.actor }}/${{ github.event.repository.name }}:312 .
-          docker build -f Dockerfile313 -t ${{ github.actor }}/${{ github.event.repository.name }}:313 .
-          docker build -f Dockerfile314 -t ${{ github.actor }}/${{ github.event.repository.name }}:314 .
+          docker build -f Dockerfile310 -t ${{ github.actor }}/${{ github.event.repository.name }}:latest-python3.10 .
+          docker build -f Dockerfile311 -t ${{ github.actor }}/${{ github.event.repository.name }}:latest-python3.11 .
+          docker build -f Dockerfile312 -t ${{ github.actor }}/${{ github.event.repository.name }}:latest-python3.12 .
+          docker build -f Dockerfile313 -t ${{ github.actor }}/${{ github.event.repository.name }}:latest-python3.13 .
+          docker build -f Dockerfile314 -t ${{ github.actor }}/${{ github.event.repository.name }}:latest-python3.14 .
 
       - name: Run Trivy vulnerability scanner for Docker image
         uses: aquasecurity/trivy-action@0.33.1
         with:
-          image-ref: '${{ github.actor }}/${{ github.event.repository.name }}:310'
+          image-ref: '${{ github.actor }}/${{ github.event.repository.name }}:latest-python3.10'
           format: 'template'
           template: '@/contrib/sarif.tpl'
           output: 'trivy-results-310.sarif'
@@ -70,7 +61,7 @@ jobs:
       - name: Run Trivy vulnerability scanner for Docker image
         uses: aquasecurity/trivy-action@0.33.1
         with:
-          image-ref: '${{ github.actor }}/${{ github.event.repository.name }}:311'
+          image-ref: '${{ github.actor }}/${{ github.event.repository.name }}:latest-python3.11'
           format: 'template'
           template: '@/contrib/sarif.tpl'
           output: 'trivy-results-311.sarif'
@@ -80,7 +71,7 @@ jobs:
       - name: Run Trivy vulnerability scanner for Docker image
         uses: aquasecurity/trivy-action@0.33.1
         with:
-          image-ref: '${{ github.actor }}/${{ github.event.repository.name }}:312'
+          image-ref: '${{ github.actor }}/${{ github.event.repository.name }}:latest-python3.12'
           format: 'template'
           template: '@/contrib/sarif.tpl'
           output: 'trivy-results-312.sarif'
@@ -90,7 +81,7 @@ jobs:
       - name: Run Trivy vulnerability scanner for Docker image
         uses: aquasecurity/trivy-action@0.33.1
         with:
-          image-ref: '${{ github.actor }}/${{ github.event.repository.name }}:313'
+          image-ref: '${{ github.actor }}/${{ github.event.repository.name }}:latest-python3.13'
           format: 'template'
           template: '@/contrib/sarif.tpl'
           output: 'trivy-results-313.sarif'
@@ -100,7 +91,7 @@ jobs:
       - name: Run Trivy vulnerability scanner for Docker image
         uses: aquasecurity/trivy-action@0.33.1
         with:
-          image-ref: '${{ github.actor }}/${{ github.event.repository.name }}:314'
+          image-ref: '${{ github.actor }}/${{ github.event.repository.name }}:latest-python3.14'
           format: 'template'
           template: '@/contrib/sarif.tpl'
           output: 'trivy-results-314.sarif'

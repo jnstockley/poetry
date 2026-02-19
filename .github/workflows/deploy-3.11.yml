@@ -75,12 +75,12 @@ jobs:
       - name: Extract metadata for pull request (testing)
         if: github.event_name == 'pull_request'
         run: |
-          echo "tags=jnstockley/poetry:testing-python${{ env.PYTHON_VERSION }},jnstockley/poetry:testing-${{ env.POETRY_VERSION }}-python${{ env.PYTHON_VERSION }},ghcr.io/jnstockley/poetry:testing-python${{ env.PYTHON_VERSION }},ghcr.io/jnstockley/poetry:testing-${{ env.POETRY_VERSION }}-python${{ env.PYTHON_VERSION }}" >> $GITHUB_ENV
+          echo "tags=jnstockley/poetry:testing-python3.11,jnstockley/poetry:testing-python${{ env.PYTHON_VERSION }},jnstockley/poetry:testing-${{ env.POETRY_VERSION }}-python${{ env.PYTHON_VERSION }},ghcr.io/jnstockley/poetry:testing-python${{ env.PYTHON_VERSION }},ghcr.io/jnstockley/poetry:testing-${{ env.POETRY_VERSION }}-python${{ env.PYTHON_VERSION }}" >> $GITHUB_ENV
 
       - name: Extract metadata for push (prod)
         if: github.event_name == 'push'
         run: |
-          echo "tags=jnstockley/poetry:latest-python${{ env.PYTHON_VERSION }},jnstockley/poetry:${{ env.POETRY_VERSION }}-python${{ env.PYTHON_VERSION }},ghcr.io/jnstockley/poetry:latest-python${{ env.PYTHON_VERSION }},ghcr.io/jnstockley/poetry:${{ env.POETRY_VERSION }}-python${{ env.PYTHON_VERSION }}" >> $GITHUB_ENV
+          echo "tags=jnstockley/poetry:latest-python3.11,jnstockley/poetry:latest-python${{ env.PYTHON_VERSION }},jnstockley/poetry:${{ env.POETRY_VERSION }}-python${{ env.PYTHON_VERSION }},ghcr.io/jnstockley/poetry:latest-python${{ env.PYTHON_VERSION }},ghcr.io/jnstockley/poetry:${{ env.POETRY_VERSION }}-python${{ env.PYTHON_VERSION }}" >> $GITHUB_ENV
 
       - name: Build Docker image
         id: build
