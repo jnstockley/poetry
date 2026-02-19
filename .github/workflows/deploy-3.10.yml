@@ -4,6 +4,11 @@ on:
   pull_request:
     branches:
       - main
+    paths:
+      - Dockerfile310
+      - requirements.txt
+      - .github/workflows/deploy-3.10.yml
+
   push:
     branches:
       - main
