@@ -40,7 +40,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build Docker image
-        if: github.event_name == 'schedule' # TODO Change this, this is for testing
+        if: github.event_name != 'schedule'
         run: |
           docker build -f Dockerfile310 -t ${{ github.actor }}/${{ github.event.repository.name }}:latest-python3.10 .
           docker build -f Dockerfile311 -t ${{ github.actor }}/${{ github.event.repository.name }}:latest-python3.11 .
