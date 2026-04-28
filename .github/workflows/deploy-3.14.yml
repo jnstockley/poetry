@@ -23,6 +23,8 @@ jobs:
     permissions:
       packages: write
       contents: read
+      id-token: write  # Required for OIDC authentication
+
     steps:
       - name: Check out the repo
         uses: actions/checkout@v4
@@ -51,25 +53,34 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
+      - name: Fetch secrets from Infisical
+        uses: Infisical/secrets-action@v1.0.16
+        with:
+          method: "oidc"
+          identity-id: ${{ vars.INFISICAL_IDENTITY_ID }}
+          domain: "https://secrets.jstockley.com"
+          project-slug: ${{ github.event.repository.name }}
+          env-slug: "prod"
+
       - name: Log in to Docker Hub
         uses: docker/login-action@v3
         with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
+          username: ${{ env.DOCKER_USERNAME }}
+          password: ${{ env.DOCKER_PASSWORD }}
 
       - name: Log in to Docker Hardened Hub
         uses: docker/login-action@v3
         with:
           registry: dhi.io
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
+          username: ${{ env.DOCKER_USERNAME }}
+          password: ${{ env.DOCKER_PASSWORD }}
 
       - name: Log in to the Container registry
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: ${{ secrets.ACTIONS_GITHUB_TOKEN }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Generate RFC 3339 datetime
         id: generate-datetime
