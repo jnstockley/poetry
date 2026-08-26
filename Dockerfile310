@@ -1,11 +1,11 @@
-FROM dhi.io/python:3.10.21-dev@sha256:ebb8ed0c141fdd688812c05f4a11ed0a78200e77f90ce2cd17cc1173d81f8612 AS build
+FROM dhi.io/python:3.10.21-dev@sha256:0c19343af46592a4e41c91745f58a091c33c02b54c9c287f81f9a613a085ca7a AS build
 
 COPY requirements.txt .
 
 RUN pip install --user --upgrade pip && \
     pip install --user -r requirements.txt
 
-FROM dhi.io/python:3.10.21@sha256:59c93e727b24723ff8b1f1d1773bf004cd3234dc9bda2407ada9ae8e1ed5d2d7
+FROM dhi.io/python:3.10.21@sha256:a7e7d90f4f6390b0e06bef94b786b3cdf07ba3c05858e41a9e1afffab2f0e2a7
 
 LABEL org.opencontainers.image.authors="Jack Stockley <jack@jstockley.com>"
 LABEL org.opencontainers.image.url="https://github.com/jnstockley/poetry"
