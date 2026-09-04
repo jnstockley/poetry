@@ -1,4 +1,4 @@
-FROM dhi.io/python:3.12.14-dev@sha256:76c53646c5d19f6728b6b85294be68e4ec805c571a1063361433902597a444fc AS build
+FROM dhi.io/python:3.12.14-dev@sha256:ddf2b7bd4625afc7e0a0931c45e7ca7001e8382df046fb9201cd69d198b35787 AS build
 
 COPY requirements.txt .
 
