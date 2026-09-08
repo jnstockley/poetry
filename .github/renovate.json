@@ -11,6 +11,7 @@
   "assignees": [
     "jnstockley"
   ],
+  "prConcurrentLimit": 0,
   "packageRules": [
     {
       "matchDatasources": [
