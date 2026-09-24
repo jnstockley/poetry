@@ -2,15 +2,13 @@
   "extends": [
     "config:recommended"
   ],
-  "ignorePaths": [
-    ".github/workflows/**"
-  ],
   "baseBranchPatterns": [
-    "beta"
+    "main"
   ],
   "assignees": [
     "jnstockley"
   ],
+  "automerge": true,
   "prConcurrentLimit": 0,
   "packageRules": [
     {
