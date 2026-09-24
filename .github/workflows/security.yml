@@ -53,16 +53,16 @@ jobs:
       - name: Build Docker image
         if: github.event_name != 'schedule'
         run: |
-          docker build -f Dockerfile310 -t ${{ github.actor }}/${{ github.event.repository.name }}:latest-python3.10 .
-          docker build -f Dockerfile311 -t ${{ github.actor }}/${{ github.event.repository.name }}:latest-python3.11 .
-          docker build -f Dockerfile312 -t ${{ github.actor }}/${{ github.event.repository.name }}:latest-python3.12 .
-          docker build -f Dockerfile313 -t ${{ github.actor }}/${{ github.event.repository.name }}:latest-python3.13 .
-          docker build -f Dockerfile314 -t ${{ github.actor }}/${{ github.event.repository.name }}:latest-python3.14 .
+          docker build -f Dockerfile310 -t jnstockley/${{ github.event.repository.name }}:latest-python3.10 .
+          docker build -f Dockerfile311 -t jnstockley/${{ github.event.repository.name }}:latest-python3.11 .
+          docker build -f Dockerfile312 -t jnstockley/${{ github.event.repository.name }}:latest-python3.12 .
+          docker build -f Dockerfile313 -t jnstockley/${{ github.event.repository.name }}:latest-python3.13 .
+          docker build -f Dockerfile314 -t jnstockley/${{ github.event.repository.name }}:latest-python3.14 .
 
       - name: Run Trivy vulnerability scanner for Docker image
         uses: aquasecurity/trivy-action@v0.35.0
         with:
-          image-ref: '${{ github.actor }}/${{ github.event.repository.name }}:latest-python3.10'
+          image-ref: 'jnstockley/${{ github.event.repository.name }}:latest-python3.10'
           format: 'template'
           template: '@/contrib/sarif.tpl'
           output: 'trivy-results-310.sarif'
@@ -73,7 +73,7 @@ jobs:
       - name: Run Trivy vulnerability scanner for Docker image
         uses: aquasecurity/trivy-action@v0.35.0
         with:
-          image-ref: '${{ github.actor }}/${{ github.event.repository.name }}:latest-python3.11'
+          image-ref: 'jnstockley/${{ github.event.repository.name }}:latest-python3.11'
           format: 'template'
           template: '@/contrib/sarif.tpl'
           output: 'trivy-results-311.sarif'
@@ -84,7 +84,7 @@ jobs:
       - name: Run Trivy vulnerability scanner for Docker image
         uses: aquasecurity/trivy-action@v0.35.0
         with:
-          image-ref: '${{ github.actor }}/${{ github.event.repository.name }}:latest-python3.12'
+          image-ref: 'jnstockley/${{ github.event.repository.name }}:latest-python3.12'
           format: 'template'
           template: '@/contrib/sarif.tpl'
           output: 'trivy-results-312.sarif'
@@ -95,7 +95,7 @@ jobs:
       - name: Run Trivy vulnerability scanner for Docker image
         uses: aquasecurity/trivy-action@v0.35.0
         with:
-          image-ref: '${{ github.actor }}/${{ github.event.repository.name }}:latest-python3.13'
+          image-ref: 'jnstockley/${{ github.event.repository.name }}:latest-python3.13'
           format: 'template'
           template: '@/contrib/sarif.tpl'
           output: 'trivy-results-313.sarif'
@@ -106,7 +106,7 @@ jobs:
       - name: Run Trivy vulnerability scanner for Docker image
         uses: aquasecurity/trivy-action@v0.35.0
         with:
-          image-ref: '${{ github.actor }}/${{ github.event.repository.name }}:latest-python3.14'
+          image-ref: 'jnstockley/${{ github.event.repository.name }}:latest-python3.14'
           format: 'template'
           template: '@/contrib/sarif.tpl'
           output: 'trivy-results-314.sarif'
