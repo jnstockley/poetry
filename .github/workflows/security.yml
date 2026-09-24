@@ -60,7 +60,7 @@ jobs:
           docker build -f Dockerfile314 -t jnstockley/${{ github.event.repository.name }}:latest-python3.14 .
 
       - name: Run Trivy vulnerability scanner for Docker image
-        uses: aquasecurity/trivy-action@v0.35.0
+        uses: aquasecurity/trivy-action@v0.36.0
         with:
           image-ref: 'jnstockley/${{ github.event.repository.name }}:latest-python3.10'
           format: 'template'
@@ -71,7 +71,7 @@ jobs:
           ignore-unfixed: true
 
       - name: Run Trivy vulnerability scanner for Docker image
-        uses: aquasecurity/trivy-action@v0.35.0
+        uses: aquasecurity/trivy-action@v0.36.0
         with:
           image-ref: 'jnstockley/${{ github.event.repository.name }}:latest-python3.11'
           format: 'template'
@@ -82,7 +82,7 @@ jobs:
           ignore-unfixed: true
 
       - name: Run Trivy vulnerability scanner for Docker image
-        uses: aquasecurity/trivy-action@v0.35.0
+        uses: aquasecurity/trivy-action@v0.36.0
         with:
           image-ref: 'jnstockley/${{ github.event.repository.name }}:latest-python3.12'
           format: 'template'
@@ -93,7 +93,7 @@ jobs:
           ignore-unfixed: true
 
       - name: Run Trivy vulnerability scanner for Docker image
-        uses: aquasecurity/trivy-action@v0.35.0
+        uses: aquasecurity/trivy-action@v0.36.0
         with:
           image-ref: 'jnstockley/${{ github.event.repository.name }}:latest-python3.13'
           format: 'template'
@@ -104,7 +104,7 @@ jobs:
           ignore-unfixed: true
 
       - name: Run Trivy vulnerability scanner for Docker image
-        uses: aquasecurity/trivy-action@v0.35.0
+        uses: aquasecurity/trivy-action@v0.36.0
         with:
           image-ref: 'jnstockley/${{ github.event.repository.name }}:latest-python3.14'
           format: 'template'
