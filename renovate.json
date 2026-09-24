@@ -18,6 +18,7 @@
       "matchFileNames": [
         "Dockerfile310"
       ],
+      "allowedVersions": "/^3\\.10\\.\\d+(-dev)?$/",
       "versioning": "regex:^(?<major>3)\\.(?<minor>10)\\.(?<patch>\\d+)(-(?<compatibility>.*))?$"
     },
     {
@@ -30,6 +31,7 @@
       "matchFileNames": [
         "Dockerfile311"
       ],
+      "allowedVersions": "/^3\\.11\\.\\d+(-dev)?$/",
       "versioning": "regex:^(?<major>3)\\.(?<minor>11)\\.(?<patch>\\d+)(-(?<compatibility>.*))?$"
     },
     {
@@ -42,6 +44,7 @@
       "matchFileNames": [
         "Dockerfile312"
       ],
+      "allowedVersions": "/^3\\.12\\.\\d+(-dev)?$/",
       "versioning": "regex:^(?<major>3)\\.(?<minor>12)\\.(?<patch>\\d+)(-(?<compatibility>.*))?$"
     },
     {
@@ -54,6 +57,7 @@
       "matchFileNames": [
         "Dockerfile313"
       ],
+      "allowedVersions": "/^3\\.13\\.\\d+(-dev)?$/",
       "versioning": "regex:^(?<major>3)\\.(?<minor>13)\\.(?<patch>\\d+)(-(?<compatibility>.*))?$"
     },
     {
@@ -66,6 +70,7 @@
       "matchFileNames": [
         "Dockerfile314"
       ],
+      "allowedVersions": "/^3\\.14\\.\\d+(-dev)?$/",
       "versioning": "regex:^(?<major>3)\\.(?<minor>14)\\.(?<patch>\\d+)(-(?<compatibility>.*))?$"
     }
   ]
