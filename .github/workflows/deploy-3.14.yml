@@ -15,7 +15,6 @@ on:
     paths:
       - Dockerfile314
       - requirements.txt
-      - .github/workflows/deploy-3.14.yml
 jobs:
   deploy:
     name: Push Docker image to multiple registries
