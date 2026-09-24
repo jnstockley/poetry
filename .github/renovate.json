@@ -5,9 +5,6 @@
   "baseBranchPatterns": [
     "main"
   ],
-  "assignees": [
-    "jnstockley"
-  ],
   "automerge": true,
   "prConcurrentLimit": 0,
   "packageRules": [
