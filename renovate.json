@@ -9,6 +9,96 @@
   "prConcurrentLimit": 0,
   "packageRules": [
     {
+      "matchManagers": [
+        "github-actions"
+      ],
+      "matchDatasources": [
+        "github-releases"
+      ],
+      "matchDepNames": [
+        "python"
+      ],
+      "matchPackageNames": [
+        "actions/python-versions"
+      ],
+      "matchFileNames": [
+        ".github/workflows/deploy-3.10.yml"
+      ],
+      "allowedVersions": "/^3\\.10\\.\\d+$/"
+    },
+    {
+      "matchManagers": [
+        "github-actions"
+      ],
+      "matchDatasources": [
+        "github-releases"
+      ],
+      "matchDepNames": [
+        "python"
+      ],
+      "matchPackageNames": [
+        "actions/python-versions"
+      ],
+      "matchFileNames": [
+        ".github/workflows/deploy-3.11.yml"
+      ],
+      "allowedVersions": "/^3\\.11\\.\\d+$/"
+    },
+    {
+      "matchManagers": [
+        "github-actions"
+      ],
+      "matchDatasources": [
+        "github-releases"
+      ],
+      "matchDepNames": [
+        "python"
+      ],
+      "matchPackageNames": [
+        "actions/python-versions"
+      ],
+      "matchFileNames": [
+        ".github/workflows/deploy-3.12.yml"
+      ],
+      "allowedVersions": "/^3\\.12\\.\\d+$/"
+    },
+    {
+      "matchManagers": [
+        "github-actions"
+      ],
+      "matchDatasources": [
+        "github-releases"
+      ],
+      "matchDepNames": [
+        "python"
+      ],
+      "matchPackageNames": [
+        "actions/python-versions"
+      ],
+      "matchFileNames": [
+        ".github/workflows/deploy-3.13.yml"
+      ],
+      "allowedVersions": "/^3\\.13\\.\\d+$/"
+    },
+    {
+      "matchManagers": [
+        "github-actions"
+      ],
+      "matchDatasources": [
+        "github-releases"
+      ],
+      "matchDepNames": [
+        "python"
+      ],
+      "matchPackageNames": [
+        "actions/python-versions"
+      ],
+      "matchFileNames": [
+        ".github/workflows/deploy-3.14.yml"
+      ],
+      "allowedVersions": "/^3\\.14\\.\\d+$/"
+    },
+    {
       "matchDatasources": [
         "docker"
       ],
