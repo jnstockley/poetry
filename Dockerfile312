@@ -15,4 +15,5 @@ LABEL org.opencontainers.image.vendor="Jack Stockley"
 LABEL org.opencontainers.image.licenses="MIT"
 LABEL org.opencontainers.image.title="Python Poetry"
 
-COPY --from=build /root/.local/ /usr/local/
+COPY --from=build /root/.local/bin/ /usr/local/bin/
+COPY --from=build /root/.local/lib/python3.12/site-packages/ /usr/lib/python3.12/site-packages/
