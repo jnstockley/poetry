@@ -95,6 +95,23 @@ jobs:
         run: |
           echo "tags=jnstockley/poetry:latest-python3.14,jnstockley/poetry:latest-python${{ env.PYTHON_VERSION }},jnstockley/poetry:${{ env.POETRY_VERSION }}-python${{ env.PYTHON_VERSION }},ghcr.io/jnstockley/poetry:latest-python3.14,ghcr.io/jnstockley/poetry:latest-python${{ env.PYTHON_VERSION }},ghcr.io/jnstockley/poetry:${{ env.POETRY_VERSION }}-python${{ env.PYTHON_VERSION }}" >> "$GITHUB_ENV"
 
+      - name: Add Poetry version aliases
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+        run: |
+          prefix=""
+          if [[ "$EVENT_NAME" == "pull_request" ]]; then
+            prefix="testing-"
+          fi
+          for registry in jnstockley/poetry ghcr.io/jnstockley/poetry; do
+            for poetry_version in "${POETRY_VERSION%%.*}" "${POETRY_VERSION%.*}" "$POETRY_VERSION"; do
+              for python_version in "3.14" "$PYTHON_VERSION"; do
+                tags+=",${registry}:${prefix}${poetry_version}-python-${python_version}"
+              done
+            done
+          done
+          echo "tags=$tags" >> "$GITHUB_ENV"
+
       - name: Build Docker image
         id: build
         uses: docker/build-push-action@v7

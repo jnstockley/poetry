@@ -25,9 +25,17 @@ Images are published to Docker Hub as `jnstockley/poetry` and to GHCR as
 `ghcr.io/jnstockley/poetry`, with the same tags:
 
 - `<poetry-version>-python<python-version>` pins both versions, as in the example above.
+- `<poetry-major>-python-<python-version>` follows Poetry releases within that major version, e.g. `2-python-3.15`.
+- `<poetry-major.minor>-python-<python-version>` follows Poetry patch releases within that minor version, e.g. `2.5-python-3.15`.
+- `<poetry-major.minor.patch>-python-<python-version>` selects a specific Poetry release, e.g. `2.5.1-python-3.15`.
 - `latest-python<major.minor>` follows the latest build for a Python minor version.
 - `latest-python<major.minor.patch>` follows the latest Poetry build for a Python patch version.
 - `latest` follows the latest Poetry and Python versions. Prefer a versioned tag in Dockerfiles to avoid unexpected changes.
+
+The Poetry version aliases are derived automatically from the installed Poetry version
+on each build. Each alias is available with both the Python minor version (e.g. `3.15`)
+and full version (e.g. `3.15.2`). Pull request builds use the same aliases with a
+`testing-` prefix.
 
 To run a command in a temporary container, use
 `docker run --rm jnstockley/poetry:latest poetry --version`.
