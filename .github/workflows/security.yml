@@ -58,6 +58,7 @@ jobs:
           docker build -f Dockerfile312 -t jnstockley/${{ github.event.repository.name }}:latest-python3.12 .
           docker build -f Dockerfile313 -t jnstockley/${{ github.event.repository.name }}:latest-python3.13 .
           docker build -f Dockerfile314 -t jnstockley/${{ github.event.repository.name }}:latest-python3.14 .
+          docker build -f Dockerfile315 -t jnstockley/${{ github.event.repository.name }}:latest-python3.15 .
 
       - name: Run Trivy vulnerability scanner for Docker image
         uses: aquasecurity/trivy-action@v0.36.0
@@ -114,6 +115,17 @@ jobs:
           severity: 'CRITICAL,HIGH'
           ignore-unfixed: true
 
+      - name: Run Trivy vulnerability scanner for Docker image
+        uses: aquasecurity/trivy-action@v0.36.0
+        with:
+          image-ref: 'jnstockley/${{ github.event.repository.name }}:latest-python3.15'
+          format: 'template'
+          template: '@/contrib/sarif.tpl'
+          output: 'trivy-results-315.sarif'
+          scanners: 'vuln,secret,misconfig'
+          severity: 'CRITICAL,HIGH'
+          ignore-unfixed: true
+
       - name: Upload Trivy scan results to GitHub Security tab
         uses: github/codeql-action/upload-sarif@v4
         with:
@@ -143,3 +155,9 @@ jobs:
         with:
           sarif_file: 'trivy-results-314.sarif'
           category: 'python-3.14'
+
+      - name: Upload Trivy scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@v4
+        with:
+          sarif_file: 'trivy-results-315.sarif'
+          category: 'python-3.15'
