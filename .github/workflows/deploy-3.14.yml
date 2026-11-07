@@ -7,6 +7,7 @@ on:
     paths:
       - Dockerfile314
       - requirements.txt
+      - README.md
       - .github/workflows/deploy-3.14.yml
 
   push:
@@ -15,6 +16,8 @@ on:
     paths:
       - Dockerfile314
       - requirements.txt
+      - README.md
+      - .github/workflows/deploy-3.14.yml
 jobs:
   deploy:
     name: Push Docker image to multiple registries
@@ -27,24 +30,6 @@ jobs:
     steps:
       - name: Check out the repo
         uses: actions/checkout@v7
-
-      - uses: actions/setup-python@v7
-        with:
-          python-version: "3.14"
-          check-latest: true
-
-      - name: Get Python version
-        id: get-python-version
-        run: |
-          PYTHON_VERSION=$(python --version | awk '{print $2}')
-          echo "PYTHON_VERSION=$PYTHON_VERSION" >> $GITHUB_ENV
-
-      - name: Get Poetry version
-        id: get-poetry-version
-        run: |
-          pip install -r requirements.txt
-          POETRY_VERSION=$(poetry --version | awk '{print $3}' | sed 's/)$//')
-          echo "POETRY_VERSION=$POETRY_VERSION" >> $GITHUB_ENV
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v4
@@ -81,41 +66,34 @@ jobs:
           username: jnstockley
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Build image for metadata
+        uses: docker/build-push-action@v7
+        with:
+          context: .
+          file: Dockerfile314
+          load: true
+          tags: poetry-metadata:local
+
+      - name: Get image versions
+        run: |
+          docker run --rm --entrypoint python poetry-metadata:local -c \
+            'import platform; from importlib.metadata import version; print("PYTHON_VERSION=" + platform.python_version()); print("POETRY_VERSION=" + version("poetry"))' >> "$GITHUB_ENV"
+
       - name: Generate RFC 3339 datetime
         id: generate-datetime
         run: |
           RFC3339_DATETIME=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
-          echo "RFC3339_DATETIME=$RFC3339_DATETIME" >> $GITHUB_ENV
+          echo "RFC3339_DATETIME=$RFC3339_DATETIME" >> "$GITHUB_ENV"
 
       - name: Extract metadata for pull request (testing)
         if: github.event_name == 'pull_request'
         run: |
-          echo "tags=jnstockley/poetry:testing-python3.14,jnstockley/poetry:testing-python${{ env.PYTHON_VERSION }},jnstockley/poetry:testing-${{ env.POETRY_VERSION }}-python${{ env.PYTHON_VERSION }},ghcr.io/jnstockley/poetry:testing-python${{ env.PYTHON_VERSION }},ghcr.io/jnstockley/poetry:testing-${{ env.POETRY_VERSION }}-python${{ env.PYTHON_VERSION }}" >> $GITHUB_ENV
+          echo "tags=jnstockley/poetry:testing-python3.14,jnstockley/poetry:testing-python${{ env.PYTHON_VERSION }},jnstockley/poetry:testing-${{ env.POETRY_VERSION }}-python${{ env.PYTHON_VERSION }},ghcr.io/jnstockley/poetry:testing-python3.14,ghcr.io/jnstockley/poetry:testing-python${{ env.PYTHON_VERSION }},ghcr.io/jnstockley/poetry:testing-${{ env.POETRY_VERSION }}-python${{ env.PYTHON_VERSION }}" >> "$GITHUB_ENV"
 
       - name: Extract metadata for push (prod)
         if: github.event_name == 'push'
         run: |
-          echo "tags=jnstockley/poetry:latest-python3.14,jnstockley/poetry:latest-python${{ env.PYTHON_VERSION }},jnstockley/poetry:${{ env.POETRY_VERSION }}-python${{ env.PYTHON_VERSION }},ghcr.io/jnstockley/poetry:latest-python${{ env.PYTHON_VERSION }},ghcr.io/jnstockley/poetry:${{ env.POETRY_VERSION }}-python${{ env.PYTHON_VERSION }}" >> $GITHUB_ENV
-
-      - name: Get repository description
-        id: get-repo-description
-        uses: actions/github-script@v9.0.0
-        with:
-          script: |
-            const repo = await github.rest.repos.get({
-              owner: context.repo.owner,
-              repo: context.repo.repo
-            });
-            return repo.data.description;
-          result-encoding: string
-
-      - name: Update Docker Description and README
-        uses: peter-evans/dockerhub-description@v5.0.0
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-          repository: jnstockley/poetry
-          short-description: ${{ steps.get-repo-description.outputs.result }}
+          echo "tags=jnstockley/poetry:latest-python3.14,jnstockley/poetry:latest-python${{ env.PYTHON_VERSION }},jnstockley/poetry:${{ env.POETRY_VERSION }}-python${{ env.PYTHON_VERSION }},ghcr.io/jnstockley/poetry:latest-python3.14,ghcr.io/jnstockley/poetry:latest-python${{ env.PYTHON_VERSION }},ghcr.io/jnstockley/poetry:${{ env.POETRY_VERSION }}-python${{ env.PYTHON_VERSION }}" >> "$GITHUB_ENV"
 
       - name: Build Docker image
         id: build
@@ -132,3 +110,25 @@ jobs:
             org.opencontainers.image.ref.name=${{ env.POETRY_VERSION }}
             org.opencontainers.image.description=Poetry ${{ env.POETRY_VERSION }} using Python ${{ env.PYTHON_VERSION }}
           tags: ${{ env.tags }}
+
+      - name: Get repository description
+        if: github.event_name == 'push'
+        id: get-repo-description
+        uses: actions/github-script@v9.0.0
+        with:
+          script: |
+            const repo = await github.rest.repos.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo
+            });
+            return repo.data.description;
+          result-encoding: string
+
+      - name: Update Docker Description and README
+        if: github.event_name == 'push'
+        uses: peter-evans/dockerhub-description@v5.0.0
+        with:
+          username: ${{ env.DOCKER_USERNAME }}
+          password: ${{ env.DOCKER_PASSWORD }}
+          repository: jnstockley/poetry
+          short-description: ${{ steps.get-repo-description.outputs.result }}
