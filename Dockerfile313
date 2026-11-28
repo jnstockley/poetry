@@ -5,7 +5,7 @@ COPY requirements.txt .
 RUN pip install --user --upgrade pip && \
     pip install --user -r requirements.txt
 
-FROM dhi.io/python:3.13.18@sha256:a8f33a59eb50691e2c7cafb882b9ab8b7b0337c77efbee0ead459c0a2809539d
+FROM dhi.io/python:3.13.18@sha256:607658e54ee1c9beb363e18d1db131cc7a8c361768c09523c435fc635e84c759
 
 LABEL org.opencontainers.image.authors="Jack Stockley <jack@jstockley.com>"
 LABEL org.opencontainers.image.url="https://github.com/jnstockley/poetry"
